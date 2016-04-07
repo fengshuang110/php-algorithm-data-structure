@@ -1,17 +1,21 @@
 <?php 
-echo "<p>ÒÑÖªÏßĞÔ±í£¬LA,LB,ÏÖÔÚĞèÒªÒ»¸öĞÂµÄ¼¯ºÏÂú×ã
+echo "<p>å·²çŸ¥çº¿æ€§è¡¨ï¼ŒLA,LB,ç°åœ¨éœ€è¦ä¸€ä¸ªæ–°çš„é›†åˆæ»¡è¶³
     A=A U B
     LA = (1,2,3,5)
     LB = (1,3,6,7,20)
     </p>";
-  $la = array(1,2,3,5);
-  $lb = array(1,3,6,7,20);
+  $LA = array(1,2,3,5);
+  $LB = array(1,3,6,7,20);
   
   function union($la,$lb){
     $len_a = count($la);
     $len_b = count($lb);
-    for($i = 0;i<$len_b;$i++){
-      
+    for($i = 0;$i<$len_b;$i++){
+      if(!in_array($lb[$i], $la) ){
+        $la[++$len_a-1] = $lb[$i];
+      }
     }
+    return $la;
   }
+  var_dump( union($LA,$LB) );
 ?>
