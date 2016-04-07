@@ -11,13 +11,17 @@ function insert_sort($la){
       $la['key'] = $la[$i];
       $la[$i] = $la[$i-1];
     }
-    for($j = $i-1;  $la['key']<$la[$j];--$j){
+    for($j = $i-1;  $j>=0 && $la['key']<$la[$j];--$j){
       $la[$j+1] = $la[$j];
     }
       $la[$j+1] =  $la['key'];
   }
   return $la;
 }
-
+echo "排序前";
+var_dump($LA);
+echo "排序后";
 var_dump(insert_sort($LA));
+
+
 ?>
