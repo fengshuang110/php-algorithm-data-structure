@@ -29,11 +29,36 @@ function q_sort(&$la,$low,$high){
     q_sort($la,$pivitloc+1,$high);
   }
 }
-echo "排序前";
+
+
+function binsert_sort(&$la){
+  $len_a = count($la);
+  for($i=1;$i<$len_a;++$i){
+    $la['key'] = $la[$i];
+    $low = 0;$high = $i-1;
+    while($low<=$high){
+      $m = intval(($low+$high)/2);
+      if($la['key'] < $la[$m]) $high = $m-1;
+      else $low = $m+1;
+    }
+    for($j=$i-1;$j>=$high+1;--$j){
+      $la[$j+1] = $la[$j];
+    }
+    $la[$high+1] = $la['key'];
+  } 
+}
+// echo "直接插入排序前";
+// var_dump($LA);
+// echo "直接插入排序后";
+// q_sort($LA,0,count($LA)-1);
+// var_dump($LA);
+
+echo "折半插入排序前";
 var_dump($LA);
-echo "排序后";
-q_sort($LA,0,count($LA)-1);
+echo "折半插入排序后";
+binsert_sort($LA);
 var_dump($LA);
+
 
 
 ?>
