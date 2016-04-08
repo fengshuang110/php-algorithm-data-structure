@@ -47,6 +47,43 @@ function binsert_sort(&$la){
     $la[$high+1] = $la['key'];
   } 
 }
+//现在最小数据 也叫冒泡
+function select_min_key($la,$i){
+  $len_a = count($la);
+  for($j=$i+1;$j<$len_a;$j++){
+    if($la[$j]<$la[$i]){
+       $i = $j;
+    }
+  }
+  return $i;
+}
+
+//选择最大数据 也叫冒泡
+function select_max_key($la,$i){
+  $len_a = count($la);
+  for($j=$i+1;$j<$len_a;$j++){
+    if($la[$j]>$la[$i]){
+      $i = $j;
+    }
+  }
+  return $i;
+}
+//插入排序
+function select_sort($la,$type=0){
+  for($i=0;$i<count($la);$i++){
+    if($type == 1){
+     $j = select_max_key($la,$i); 
+    }else{
+      $j = select_min_key($la,$i);
+    }
+      if($i != $j){
+        $t =$la[$i];
+        $la[$i] = $la[$j];
+        $la[$j] = $t;
+      }
+  }
+  return $la;
+}
 // echo "直接插入排序前";
 // var_dump($LA);
 // echo "直接插入排序后";
@@ -56,8 +93,8 @@ function binsert_sort(&$la){
 echo "折半插入排序前";
 var_dump($LA);
 echo "折半插入排序后";
-binsert_sort($LA);
-var_dump($LA);
+
+var_dump(select_sort($LA,1));
 
 
 
